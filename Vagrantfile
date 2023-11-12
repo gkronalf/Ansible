@@ -23,11 +23,8 @@ Vagrant.configure("2") do |config|
             vb.customize ["modifyvm", :id, "--memory", "200"]
           end
           
-          box.vm.provision "shell", inline: <<-SHELL
-            mkdir -p ~root/.ssh; cp ~vagrant/.ssh/auth* ~root/.ssh
-            sed -i '65s/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-            systemctl restart sshd
-          SHELL
+          box.vm.provision "shell", path: "./scripts/update.sh"
+          box.vm.provision "shell", path: "./scripts/enable_ssh_auth.sh"
 
       end
   end
