@@ -23,8 +23,8 @@ Vagrant.configure("2") do |config|
             vb.customize ["modifyvm", :id, "--memory", "200"]
           end
           
-          box.vm.provision "shell", path: "./scripts/update.sh"
           box.vm.provision "shell", path: "./scripts/enable_ssh_auth.sh"
+          box.vm.provision "shell", path: "./scripts/update.sh"
 
       end
   end
